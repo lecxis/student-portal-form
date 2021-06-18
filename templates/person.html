@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block title %} 
+<title>Person</title>
+{%endblock%}
+  
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 back">
+            {% for word in  details%}
+            <div class="pic">
+                {% if word['image_name'] %}
+                <img src="{{ url_for('static', filename='images/'+word['image_name'])}}" alt="{{word['first']}} picture" >
+                {% else %}
+                <img src="{{ url_for('static', filename='images/logo.png')}}" alt="{{word['first']}} picture" >
+                {% endif %}
+                <div class="name">
+                    <p>{{word['first']}} {{word['middle']}} {{word['last']}}</p>
+                    <p class="status bg-primary">{{word['addmission_status']}}</p>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="personalInfo ">
+                <p class="bg-info"> <strong>Personal Information</p></strong>
+                <div class="info">
+                <p>Email: <span class='p-email'>{{word['email']}}</span></p>
+                <p>Gender: <span class='p-gender'>{{word['gender']}}</span></p>
+                <p>Phone Number: <span class='p-phone'>{{word['phone']}}</span></p>
+                <p>Date Of Birth: <span class='p-dob'>{{word['date']}} </span></p>
+                <p>Address: <span class='p-address'>{{word['address']}}</span></p>
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 ">
+            <p class="p-otherInfo bg-info">
+               <strong> Other Information </strong>
+            </p>
+        </div>
+        <div class="row ">
+            <div class="col-md-3 col-md-offset-1">
+                <p class="p-stateOf">
+                    State of Origin: {{word['state']}}
+                </p>
+            </div>
+            <div class="col-md-2">
+                <p class="p-lga">
+                    Local Govt: {{word['LGA']}}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <p class="p-otherInfo bg-info">
+                <strong> Academics Related Information </strong>
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p class="p-nextKin">
+                    Next of Kin: {{word['next_of_kin']}}
+                </p>
+            </div>
+            <div class="col-md-2">
+                <p class="p-jamb">
+                    Jamb Score: {{word['jamb']}}
+                </p>
+            </div>
+            <div class="col-md-2">
+                <p class="p-status">
+                    Status: {{word['addmission_status']}}
+                </p>
+            </div>
+            <div class="col-md-5">
+                <span class="changeStatus"></span>Change Status: </span>
+                <form class="form-inline statusForm">
+                    <select class="form-control input-sm aStatus "
+                            name="aStatus"
+                            id= "{{word['id']}}"
+                            required>
+                                <option disabled selected hidden>Change Status</option>
+                                <option>Admitted</option>
+                                <option>Unadmited</option>
+                              </select>
+                            </form>
+            </div>
+        </div>
+        {% endfor%}
+    
+    </div>
+    {% block javascript %}
+                        <script>
+                            $('#indexHome' ).removeClass('active');
+                            $('#started').removeClass('active');
+                        </script>
+     {% endblock %}
+   
+</div>
+{%endblock%}

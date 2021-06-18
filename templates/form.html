@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+{% block title %} 
+<title>Student Portal Form</title>
+{%endblock%}
+  
+{% block content %}
+<div class="container bg-info">
+    <div class="col-md-12">
+        <h4 class="text-center"><strong>Student Portal Form</strong></h4>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <p class="instruction text-danger"><strong><em>fill in all required information</em> </strong></p>
+        
+            <p class="text-white bg-dark"> <strong> Personal information</strong></p>
+            </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <form action="javascript:0" id="student-form" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="image">Upload Image:</label>
+                    <input 
+                    type="file" 
+                    class="form-control-file" 
+                    name="image"
+                    id="image" 
+                    accept="image/*"
+                    required
+                    >
+                </div>
+                <div class="row">
+                        <div class="col-xs-6 form-group">
+                            <label for="firstName">FirstName</label>
+                            <input 
+                            type="text" 
+                            class="form-control input-sm" 
+                            name="firstName"
+                            id="firstName" 
+                            placeholder="Enter Firstname"
+                            required
+                            > 
+                    </div>
+                        <div class="col-xs-6 form-group">
+                            <label for="middleName">MiddleName</label>
+                            <input 
+                            type="text" 
+                            class="form-control input-sm" 
+                            name="middleName"
+                            id="middleName" 
+                            placeholder="Enter Middlename"
+                            
+                            required
+                            >
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 form-group">
+                        <label for="lastName">LastName</label>
+                        <input 
+                        type="text" 
+                        class="form-control input-sm" 
+                        name="lastName"
+                        id="lastName" 
+                        placeholder="Enter Lastname"
+                        required
+                        > 
+                    </div>
+                    <div class="col-xs-6 form-group">
+                        <label for="email">Email</label>
+                        <input 
+                        type="text" 
+                        class="form-control input-sm" 
+                        name="email"
+                        id="email" 
+                        placeholder="Enter Email Address"
+                        
+                        required
+                        >
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-xs-6 form-group">
+                        <label for="dOB">Date of Birth</label>
+                        <input 
+                        type="date" 
+                        class="form-control input-sm" 
+                        name="dob"
+                        id="dob" 
+                        placeholder="mm/dd/yy"
+                        required
+                        > 
+                    </div>
+                    <div class="col-xs-6 form-group">
+                        <label class="radio-inline">
+                        <input 
+                        type="radio" 
+                        name="gender"
+                        id="male" 
+                        value="male"
+                        required
+                        > male
+                    </label>
+                    <label class="radio-inline">
+                        <input 
+                        type="radio" 
+                        name="gender"
+                        id="female" 
+                        value="female"
+                        required
+                        > female
+                    </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 form-group">
+                        <label for="phoneNumber">Phone Number</label>
+                        <input 
+                        type="number" 
+                        class="form-control input-sm" 
+                        name="phoneNumber"
+                        id="phoneNumber" 
+                        placeholder="Enter Phone number"
+                        required
+                        > 
+                    </div>
+                    <div class="col-xs-6 form-group">
+                        <label for="address">Address</label>
+                        <input 
+                        type="textarea" 
+                        class="form-control input-sm" 
+                        name="address"
+                        id="address" 
+                        placeholder="Enter Address"
+                        
+                        required
+                        >
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 form-group">
+                        <label for="state">State of origin</label> 
+                        <select class="form-control input-sm" 
+                        name="state"
+                        id="state" 
+                        required>
+                        <option disabled selected hidden>Choose state of Origin</option>
+                        {% for word in  states%}
+                            <option>{{word['state']}}</option>
+                            {% endfor %}
+                          </select>
+                    </div>
+                    <div class="col-xs-6 form-group">
+                        <label for="state">Local Government</label> 
+                        <select class="form-control input-sm" 
+                        name="lg"
+                        id="lg" 
+                        required>
+                        <option disabled selected hidden>Select Local Governement</option>
+                        {% block javascript %}
+                        <script>
+                            populateSelect();
+                            $('#indexHome' ).removeClass('active');
+                            $('#started').addClass('active');
+                          /*  var states = JSON.parse(`{{ states | tojson }}`);
+                            document.querySelector('#state').addEventListener("change", updateLga);
+                            function updateLga(){
+                                var state=document.querySelector('#state').value;
+                                document.querySelector('#lg').innerHTML="";
+                                var lga;
+                                states.forEach(function(value){
+                                    if(state==value.state){
+                                        lga=value.local;
+                                    }
+                                });
+                                lga.forEach(function(value){
+                                    document.querySelector('#lg').innerHTML+=`<option>${value}</option>`
+                                });
+                            }
+                            */
+                            </script>
+                            {% endblock %}
+                          </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 form-group">
+                        <label for="nok">Next of Kin</label>
+                        <input 
+                        type="text" 
+                        class="form-control input-sm" 
+                        name="nok"
+                        id="nok" 
+                        placeholder="Enter The Name of Next Of Kin"
+                        required
+                        > 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="text-white bg-dark"> <strong> Academics Related Information</strong></p>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 form-group">
+                        <label for="nok">Jamb Score</label>
+                        <input 
+                        type="text" 
+                        class="form-control input-sm" 
+                        name="jamb"
+                        id="jamb" 
+                        placeholder="Enter Jamb Score"
+                        required
+                        > 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12"><button type="submit" class="btn btn-primary btn-lg center-block 
+                        btn-md">Submit</button>
+                    </div>
+                </div>
+                
+            </form>
+            </div>
+    </div>
+
+
+    </div>
+{%endblock%}

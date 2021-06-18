@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %} 
+<title>Dashboard</title>
+{%endblock%}
+  
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-12 bg-info info-head"><p><span class="info"><strong>Info!</strong></span> All students record table</p></div>
+    </div>
+    <div class="row">
+        <form class="form-inline inline-block ">
+              <input type="text" class="form-control" id="fullname" size="30" placeholder="Search Record By Name Only">
+            <div class="form-group">
+                <select class="form-control input-sm" 
+                        name="aStatus"
+                        id="aStatus"
+                        required>
+                            <option disabled selected hidden>Select Admission Status</option>
+                            <option>2</option>
+                            <option>2</option>
+                          </select>
+            </div>
+            <div class="form-group">
+                <select class="form-control input-sm" 
+                        name="gender2"
+                        id="gender2"
+                        required>
+                            <option disabled selected hidden>Select Gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                          </select>
+            </div>
+            <input type="text" class="form-control" id="jamb2" placeholder="Enter Jamb Score">
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
+    </div>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>S/n</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Jamb Score</th>
+                    <th>Admission Status</th>
+                    <th>View</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for word in  details%}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{word['first']}} {{word['middle']}} {{word['last']}}</td>
+                    <td>{{word['gender']}}</td>
+                    <td>{{word['jamb']}}</td>
+                    <td>{{word['addmission_status']}}</td>
+                    <td><button type="button" id="{{ word['id'] }}" class="btn btn-sm btn-primarybtn-block view ">View</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+          {% block javascript %}
+          <script>
+              $('#indexHome' ).removeClass('active');
+              $('#started').removeClass('active');
+          </script>
+{% endblock %}
+    </div>
+  </div>
+{%endblock%}
