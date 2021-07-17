@@ -38,8 +38,8 @@ def dashboard():
     cur=conn.cursor()
     cur.execute('select id, first, middle, last, gender, jamb, addmission_status from data;' )
     rv = cur.fetchall()
-    for item in rv:
-        print(item)
+    #for item in rv:
+     #   print(item)
     return render_template('dashboard.html', details=rv)
 
 @app.route('/person/<id>')
@@ -68,9 +68,6 @@ def submitForm():
     nextOfKin= req['NextOfKin']
     jamb= req['jambScore']
     image=req['firstName']+req['middleName']+req['lastName']+'.png'
-    print(image)
-
-
     conn=mysql.get_db()
     cur= conn.cursor()
     cur.execute('insert into data(first, middle, last, email, date, gender, phone, address, state, LGA, next_of_kin, jamb,image_name) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)', (firstName, middleName, lastName, email, dateOfBirth, gender, phone, address, state, lga, nextOfKin, jamb,image))
@@ -102,4 +99,4 @@ def status():
 
 if __name__=="__main__":
      app.run()
- 
+ ## venv\Scripts\activate to start virtual environment 
