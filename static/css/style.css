@@ -13,6 +13,12 @@ a.navbar-brand{
     font-weight: 500;
     letter-spacing: 2px;
 }
+.flash_success{
+  color: rgb(15,206,15);
+}
+.flash_error{
+  color: red;
+}
 .main{
   padding-left: 50px;
   padding-right: 50px;

@@ -1,5 +1,6 @@
 window.onload=function(){
-    $('#student-form').submit(function(){
+    $('#myModal').modal('show');
+    $('#student-form').submit(function(event){
         let first= $('#firstName').val();
         let middle= $('#middleName').val();
         let last= $('#lastName').val();
@@ -28,42 +29,57 @@ window.onload=function(){
             'jambScore': jamb
         });
         $.ajax({
-            url:'/submit',
+            url:'/form',
             type: 'POST',
             dataType: 'json',
             data: data,
             contentType: 'application/json, charset=UTF-8',
             success: function(data){
-                //location.reload();
+
+            if (data=='success'){
+                console.log('image wil be loaded...')
+            let data2 =new FormData();
+            data2.append('file', $('#image')[0].files[0]);
+            data2.append("path", first+middle+last+'.png');
+
+            $.ajax({
+            url:'/form',
+            type: 'POST',
+            data: data2,
+            enctype:'multipart/form-data',
+            processData: false,
+            contentType: false,
+            success: function(data2){
+                //console.log(date,code,response);
+                console.log('response ',data2);
+            setTimeout(function(){
+                window.location.href = data2;
+            },800)
+            // event.preventDefault();
+            },
+            error:function(request,status, message){
+                console.log(request.responseJSON.message);
+                console.log('error occured')
+             }
+        })
+            }
+            else if (data='failure'){
+                console.log('failed....')
+                location.reload();
+            }
             },
             error:function(err){
                 console.log(err);
             }
         })
-        let data2 =new FormData();
-    data2.append('file', $('#image')[0].files[0]);
-    data2.append("path", first+middle+last+'.png');
-
-    $.ajax({
-        url:'/save_image',
-        type: 'POST',
-        data: data2,
-        enctype:'multipart/form-data',
-        processData: false,
-        contentType: false,
-        success: function(data2){
-            window.location.href = "dashboard";
-        },
-        error:function(err){
-            console.log(err);
-        }
-    })
+   
         }
     );
 
+    // Function to open individual pages
     $('.view').click(function(){
-
-        window.location.href = "person/"+$(this).attr('id');
+       // let personId=$(this).attr('id');
+       window.location.href = "person/"+$(this).attr('id');
         
         }
     );

@@ -17,7 +17,8 @@
     </div>
     <div class="row">
         <div class="col-sm-12">
-            <form action="javascript:0" id="student-form" enctype="multipart/form-data">
+            <!--c"javascript:0"-->
+            <form action="javascript:" id="student-form" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="image">Upload Image:</label>
                     <input 
@@ -49,8 +50,8 @@
                             name="middleName"
                             id="middleName" 
                             placeholder="Enter Middlename"
-                            
                             required
+                            
                             >
                         </div>
                 </div>
@@ -74,8 +75,8 @@
                         name="email"
                         id="email" 
                         placeholder="Enter Email Address"
-                        
                         required
+                        
                         >
                     </div>
                 </div>
@@ -133,8 +134,8 @@
                         name="address"
                         id="address" 
                         placeholder="Enter Address"
-                        
                         required
+                        
                         >
                     </div>
                 </div>
@@ -143,8 +144,8 @@
                         <label for="state">State of origin</label> 
                         <select class="form-control input-sm" 
                         name="state"
-                        id="state" 
-                        required>
+                        id="state" required 
+                        >
                         <option disabled selected hidden>Choose state of Origin</option>
                         {% for word in  states%}
                             <option>{{word['state']}}</option>
@@ -155,8 +156,8 @@
                         <label for="state">Local Government</label> 
                         <select class="form-control input-sm" 
                         name="lg"
-                        id="lg" 
-                        required>
+                        id="lg" required
+                        >
                         <option disabled selected hidden>Select Local Governement</option>
                         {% block javascript %}
                         <script>
