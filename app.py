@@ -20,12 +20,7 @@ def index():
 #get state and local govt data and load as json
 statesfile = os.path.join('static', "states-localgovts.json")
 statesData=json.load(open(statesfile))
-#def index():
- #   return render_template('index.html')
 
-#@app.route('/form')
-#def student_form():
-#    return render_template('form.html',states=data)
 #return states data
 @app.route('/states' , methods=['GET', 'POST'])
 def states():
